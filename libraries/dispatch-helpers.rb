@@ -1,4 +1,5 @@
 module NginxSimpleCGI
+  # type:: Type of dispatch (currently supported: :php, :cgi (defaults to :cgi))
   # args:: Custom arguments
   #   * :pattern => CGI pattern (defaults: ^/cgi-bin/.*\.cgi$)
   #   * :cgi_bin_dir => CGI bin directory prefix (defaults: '/usr/lib')
@@ -7,10 +8,11 @@ module NginxSimpleCGI
   #   * :custom => String appended into location block
   # block:: Eval'ed and result string casted and appended into location block
   #     
-  def cgi_dispatch(args={})
+  def dispatch(type = :cgi, args={})
     args = {
-      :pattern => '^/cgi-bin/.*\.cgi$', 
+      :pattern => type == :php ? '.php$' : '^/cgi-bin/.*\.cgi$', 
       :cgi_bin_dir => '/usr/lib',
+      :docroot => '/var/www',
       :dispatcher => "unix:#{File.join(node[:nginx_simplecgi][:dispatcher_directory], 'cgiwrap-dispatch.sock')}"
     }.merge(args)
     %Q(
@@ -18,7 +20,13 @@ module NginxSimpleCGI
     gzip off; 
     fastcgi_pass  #{args[:dispatcher]};
     fastcgi_index index.cgi;
-    fastcgi_param SCRIPT_FILENAME #{args[:cgi_bin_dir]}$fastcgi_script_name;
+    #{
+      if(type == :cgi)
+        "fastcgi_param SCRIPT_FILENAME #{args[:cgi_bin_dir]}$fastcgi_script_name;"
+      else
+        "fastcgi_param SCRIPT_FILE_NAME #{args[:docroot]}$fastcgi_script_name;"
+      end
+    }
     fastcgi_param QUERY_STRING     $query_string;
     fastcgi_param REQUEST_METHOD   $request_method;
     fastcgi_param CONTENT_TYPE     $content_type;
