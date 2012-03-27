@@ -1,33 +1,37 @@
-package 'libfcgi-perl'
-package 'libfcgi-procmanager-perl'
+# Basic setups
+#
+pkgs = value_for_platform(
+  %w(redhat centos fedora scientific) => {
+    "default" => %w(perl-FCGI perl-FCGI-ProcManager)
+  },
+  %w(debian ubuntu) => {
+    "default" => %w(libfcgi-perl libfcgi-procmanager-perl)
+  },
+  "default" => %w(libfcgi-perl libfcgi-procmanager-perl)
+)
 
-directory '/var/run/nginx' do
+pkgs.each do |package_name|
+  package package_name
+end
+
+directory node[:nginx_simplecgi][:dispatcher_directory] do
   action :create
   recursive true
   owner node[:nginx][:user]
   group node[:nginx][:group] || node[:nginx][:user]
 end
 
-template '/usr/local/bin/cgiwrap_dispatcher' do
-  source 'cgiwrap-dispatcher.erb'
-  variables(
-    :dispatch_dir => node[:nginx_simplecgi][:dispatcher_directory],
-    :dispatch_procs => node[:nginx_simplecgi][:dispatcher_processes]
-  )
-  mode '0755'
+# Setup our dispatchers
+include_recipe 'nginx_simplecgi::cgi' if node[:nginx_simplecgi][:cgi]
+include_recipe 'nginx_simplecgi::php' if node[:nginx_simplecgi][:php]
+
+# Setup our init
+
+case node[:nginx_simplecgi][:init_type].to_sym
+when :upstart
+  include_recipe 'nginx_simplecgi::cgi-upstart' if node[:nginx_simplecgi][:cgi]
+  include_recipe 'nginx_simplecgi::php-upstart' if node[:nginx_simplecgi][:php]
+else
+  raise "Not Implemented: #{node[:nginx_simplecgi][:init_type]}"
 end
 
-template '/etc/init/nginx_cgiwrap_dispatcher.conf' do
-  source 'upstart-cgiwrap_dispatcher.erb'
-  variables(
-    :dispatch_dir => node[:nginx_simplecgi][:dispatcher_directory],
-    :nginx_user => node[:nginx][:user],
-    :nginx_group => node[:nginx][:group] || node[:nginx][:user]
-  )
-end
-
-service "nginx_cgiwrap_dispatcher" do
-  provider Chef::Provider::Service::Upstart
-  supports :status => true, :restart => true, :reload => true
-  action [:enable, :start]
-end
