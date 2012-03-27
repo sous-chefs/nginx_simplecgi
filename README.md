@@ -6,17 +6,21 @@ This cookbook provides CGI support for NGINX via SimpleCGI.
 Options
 -------
 
+* `node[:nginx_simplecgi][:cgi] -> Enable CGI dispatch`
+* `node[:nginx_simplecgi][:php] -> Enable PHP dispatch`
+* `node[:nginx_simplecgi][:php_cgi_bin] -> PHP executable path for CGI`
+* `node[:nginx_simplecgi][:init_type] -> Init style for dispatchers`
 * `node[:nginx_simplecgi][:dispatcher_directory] -> Directory to contain socket and pid files`
 * `node[:nginx_simplecgi][:dispatcher_processes] -> Number of dispatcher processes for handling requests`
 
 Template Helper
 ---------------
 
-A template method helper, `cgi_dispatch` is provided to add the require location block into your
+A template method helper, `dispatch` is provided to add the require location block into your
 nginx configuration files:
 
 ```ruby
-<%= cgi_dispatch %>
+<%= dispatch(:cgi) %>
 ```
 
 The default call will output:
