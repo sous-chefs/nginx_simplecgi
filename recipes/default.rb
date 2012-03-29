@@ -2,6 +2,7 @@
 #
 pkgs = value_for_platform(
   %w(redhat centos fedora scientific) => {
+    %w(5.0 5.1 5.2 5.3 5.4 5.5 5.6 5.7 5.8) => %w(fcgi-perl),
     "default" => %w(perl-FCGI perl-FCGI-ProcManager)
   },
   %w(debian ubuntu) => {
@@ -12,6 +13,11 @@ pkgs = value_for_platform(
 
 pkgs.each do |package_name|
   package package_name
+end
+
+if(pkgs.include?('fcgi-perl'))
+  include_recipe 'perl'
+  cpan_module 'FCGI::ProcManager'
 end
 
 directory node[:nginx_simplecgi][:dispatcher_directory] do
