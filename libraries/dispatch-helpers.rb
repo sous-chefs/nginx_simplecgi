@@ -8,7 +8,7 @@ module NginxSimpleCGI
   #   * :custom => String appended into location block
   # block:: Eval'ed and result string casted and appended into location block
   #     
-  def dispatch(type = :cgi, args={})
+  def nginx_dispatch(type = :cgi, args={})
     args = {
       :pattern => type == :php ? '.php$' : '^/cgi-bin/.*\.cgi$', 
       :cgi_bin_dir => '/usr/lib',
