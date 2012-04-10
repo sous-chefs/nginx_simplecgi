@@ -5,10 +5,7 @@ pkgs = value_for_platform(
     %w(5.0 5.1 5.2 5.3 5.4 5.5 5.6 5.7 5.8) => %w(fcgi-perl),
     "default" => %w(perl-FCGI perl-FCGI-ProcManager)
   },
-  %w(debian ubuntu) => {
-    "default" => %w(libfcgi-perl libfcgi-procmanager-perl)
-  },
-  "default" => %w(libfcgi-perl libfcgi-procmanager-perl)
+  "default" => %w(libfcgi-perl libfcgi-procmanager-perl spawn-fcgi)
 )
 
 pkgs.each do |package_name|
@@ -35,8 +32,11 @@ include_recipe 'nginx_simplecgi::php' if node[:nginx_simplecgi][:php]
 
 case node[:nginx_simplecgi][:init_type].to_sym
 when :upstart
-  include_recipe 'nginx_simplecgi::cgi-upstart' if node[:nginx_simplecgi][:cgi]
-  include_recipe 'nginx_simplecgi::php-upstart' if node[:nginx_simplecgi][:php]
+  include_recipe 'nginx_simplecgi::upstart'
+when :runit
+  include_recipe 'nginx_simplecgi::runit'
+when :bluepill
+  include_recipe 'nginx_simplecgi::bluepill'
 else
   raise "Not Implemented: #{node[:nginx_simplecgi][:init_type]}"
 end
