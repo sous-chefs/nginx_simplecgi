@@ -16,6 +16,8 @@ end
 template '/usr/local/bin/phpwrap_dispatcher' do
   source 'phpwrap-dispatcher.erb'
   variables(
+    :nginx_user => node[:nginx][:user],
+    :nginx_group => node[:nginx][:group] || node[:nginx][:user],
     :dispatch_dir => node[:nginx_simplecgi][:dispatcher_directory],
     :dispatch_procs => node[:nginx_simplecgi][:dispatcher_processes],
     :php_cgi_bin => node[:nginx_simplecgi][:php_cgi_bin]
