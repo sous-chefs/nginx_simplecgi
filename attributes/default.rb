@@ -1,6 +1,6 @@
 node[:nginx_simplecgi] = Mash.new
 # Enable CGI dispatcher
-node[:nginx_simplecgi][:cgi] = true
+node[:nginx_simplecgi][:cgi] = false
 # Enable PHP dispatcher
 node[:nginx_simplecgi][:php] = false
 # Directory to contain dispatcher socket and pid file
