@@ -13,7 +13,7 @@ module NginxSimpleCGI
       :pattern => type == :php ? '.php$' : '^/cgi-bin/.*\.cgi$', 
       :cgi_bin_dir => '/usr/lib',
       :docroot => '/var/www',
-      :dispatcher => "unix:#{File.join(node[:nginx_simplecgi][:dispatcher_directory], 'cgiwrap-dispatch.sock')}"
+      :dispatcher => "unix:#{File.join(node[:nginx_simplecgi][:dispatcher_directory], "#{type}wrap-dispatch.sock")}"
     }.merge(args)
     %Q(
   location ~ #{args[:pattern]} {
