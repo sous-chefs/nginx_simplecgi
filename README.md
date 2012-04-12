@@ -20,7 +20,7 @@ A template method helper, `dispatch` is provided to add the require location blo
 nginx configuration files:
 
 ```ruby
-<%= dispatch(:cgi) %>
+<%= nginx_dispatch(:cgi) %>
 ```
 
 The default call will output:
