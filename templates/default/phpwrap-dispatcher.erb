@@ -2,7 +2,7 @@
 
 FASTCGI_USER=<%= @nginx_user %>
 FASTCGI_GROUP=<%= @nginx_group %>
-SOCKET=<%= File.join(@dispatch_dir, 'phpwrap_dispatcher.sock') %>
+SOCKET=<%= File.join(@dispatch_dir, 'phpwrap-dispatch.sock') %>
 PIDFILE=<%= File.join(@dispatch_dir, 'phpwrap_dispatcher.pid') %>
 CHILDREN=<%= @dispatch_procs.to_i %>
 PHP5=<%= @php_cgi_bin %>
