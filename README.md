@@ -16,8 +16,8 @@ Options
 Template Helper
 ---------------
 
-A template method helper, `dispatch` is provided to add the require location block into your
-nginx configuration files:
+A template method helper, `dispatch` is provided to add the require location 
+block into your nginx configuration files:
 
 ```ruby
 <%= nginx_dispatch(:cgi) %>
@@ -57,4 +57,5 @@ Available options:
 * `:dispatcher -> use a custom dispatcher (socket or tcp based)`
 * `:custom -> string to be appended within the location block`
 
-The method will also accept a block that will be eval'd and the result appended within the location block.
+The method will also accept a block that will be eval'd and the result appended
+within the location block.
