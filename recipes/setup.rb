@@ -2,11 +2,18 @@
 #
 pkgs = value_for_platform(
   %w(redhat centos fedora scientific) => {
-    %w(5.0 5.1 5.2 5.3 5.4 5.5 5.6 5.7 5.8) => %w(fcgi-perl),
-    "default" => %w(perl-FCGI perl-FCGI-ProcManager)
+    %w(5.0 5.1 5.2 5.3 5.4 5.5 5.6 5.7 5.8) => %w(fcgi-perl spawn-fcgi),
+    "default" => %w(perl-FCGI perl-FCGI-ProcManager spawn-fcgi)
   },
   "default" => %w(libfcgi-perl libfcgi-procmanager-perl spawn-fcgi)
 )
+
+if(platform?(*%w(redhat centos fedora scientific)))
+  include_recipe 'yum::epel'
+  if(node[:nginx_simplecgi][:init_type].to_sym == :upstart)
+    node.set[:nginx_simplecgi][:init_type] = 'init'
+  end
+end
 
 pkgs.each do |package_name|
   package package_name
@@ -37,6 +44,8 @@ when :runit
   include_recipe 'nginx_simplecgi::runit'
 when :bluepill
   include_recipe 'nginx_simplecgi::bluepill'
+when :init
+  include_recipe 'nginx_simplecgi::init'
 else
   raise "Not Implemented: #{node[:nginx_simplecgi][:init_type]}"
 end
