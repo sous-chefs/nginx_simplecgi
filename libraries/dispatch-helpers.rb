@@ -19,12 +19,12 @@ module NginxSimpleCGI
   location ~ #{args[:pattern]} {
     gzip off; 
     fastcgi_pass  #{args[:dispatcher]};
-    fastcgi_index index.cgi;
+    fastcgi_index index.#{type};
     #{
       if(type == :cgi)
         "fastcgi_param SCRIPT_FILENAME #{args[:cgi_bin_dir]}$fastcgi_script_name;"
       else
-        "fastcgi_param SCRIPT_FILE_NAME #{args[:docroot]}$fastcgi_script_name;"
+        "fastcgi_param SCRIPT_FILENAME #{args[:docroot]}$fastcgi_script_name;"
       end
     }
     fastcgi_param QUERY_STRING     $query_string;
@@ -43,6 +43,7 @@ module NginxSimpleCGI
     fastcgi_param SERVER_ADDR        $server_addr;
     fastcgi_param SERVER_PORT        $server_port;
     fastcgi_param SERVER_NAME        $server_name;
+    #{"fastcgi_param REDIRECT_STATUS        200;" if type == :php}
     #{args[:custom] if args[:custom]}
     #{yield.to_s if block_given?}
   }
