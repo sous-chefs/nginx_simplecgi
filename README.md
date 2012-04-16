@@ -3,6 +3,11 @@ NginxSimpleCGI
 
 This cookbook provides CGI support for NGINX via SimpleCGI.
 
+Repository
+----------
+
+https://github.com/heavywater/chef-nginx_simplecgi
+
 Options
 -------
 
