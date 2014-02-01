@@ -19,7 +19,7 @@ if node[:nginx_simplecgi][:php]
     source 'wrap.init.erb'
     owner 'root'
     group 'root'
-    mode 0755
+    mode '0755'
     variables(
       :kind => 'php',
       :exec => '/usr/local/bin/phpwrap_dispatcher',
@@ -41,7 +41,7 @@ if node[:nginx_simplecgi][:cgi]
     source 'wrap.init.erb'
     owner 'root'
     group 'root'
-    mode 0755
+    mode '0755'
     variables(
       :kind => 'cgi',
       :exec => '/usr/local/bin/cgiwrap_dispatcher',
