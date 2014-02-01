@@ -3,13 +3,30 @@ NginxSimpleCGI
 
 This cookbook provides CGI support for NGINX via SimpleCGI.
 
-Repository
+
+Requirements
+------------
+
+### Platform:
+
+ * Debian
+ * Ubuntu 10.04+
+ * RHEL based platforms (CentOS, Redhat, etc)
+
+### Cookbooks
+
+ * nginx
+ * perl
+ * runit
+ * bluepill
+ * yum (recommended)
+
+
+Usage
+=====
+
+Attributes
 ----------
-
-https://github.com/heavywater/chef-nginx_simplecgi
-
-Options
--------
 
 * `node[:nginx_simplecgi][:cgi] -> Enable CGI dispatch`
 * `node[:nginx_simplecgi][:php] -> Enable PHP dispatch`
@@ -64,3 +81,16 @@ Available options:
 
 The method will also accept a block that will be eval'd and the result appended
 within the location block.
+
+
+License and Author
+------------------
+
+Author:: Chris Roberts (<chrisroberts.code@gmail.com>)
+
+Copyright:: Chris Roberts
+
+Repository:: https://github.com/heavywater/chef-nginx_simplecgi
+
+License:: Apache 2.0
+
