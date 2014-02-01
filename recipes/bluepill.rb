@@ -1,5 +1,5 @@
 
-include_recipe "bluepill"
+include_recipe 'bluepill'
 
 wrap_types = [
   node[:nginx_simplecgi][:php] ? :php : nil,

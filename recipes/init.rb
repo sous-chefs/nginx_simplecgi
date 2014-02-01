@@ -1,5 +1,5 @@
 
-if(node[:nginx_simplecgi][:php])
+if node[:nginx_simplecgi][:php]
   template '/etc/init.d/phpwrap_dispatcher' do
     source 'wrap.init.erb'
     owner 'root'
@@ -21,7 +21,7 @@ if(node[:nginx_simplecgi][:php])
   end
 end
 
-if(node[:nginx_simplecgi][:cgi])
+if node[:nginx_simplecgi][:cgi]
   template '/etc/init.d/cgiwrap_dispatcher' do
     source 'wrap.init.erb'
     owner 'root'

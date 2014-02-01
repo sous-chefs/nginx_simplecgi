@@ -1,5 +1,5 @@
 
-include_recipe "runit"
+include_recipe 'runit'
 
 wrap_types = [
   node[:nginx_simplecgi][:php] ? :php : nil,

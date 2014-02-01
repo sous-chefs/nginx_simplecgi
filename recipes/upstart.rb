@@ -1,5 +1,5 @@
 
-if(node[:nginx_simplecgi][:php])
+if node[:nginx_simplecgi][:php]
   template '/etc/init/nginx_phpwrap_dispatcher.conf' do
     source 'upstart-phpwrap_dispatcher.erb'
     variables(
@@ -11,14 +11,14 @@ if(node[:nginx_simplecgi][:php])
     )
   end
 
-  service "nginx_phpwrap_dispatcher" do
+  service 'nginx_phpwrap_dispatcher' do
     provider Chef::Provider::Service::Upstart
     supports :status => true, :restart => true, :reload => true
     action [:enable, :start]
   end
 end
 
-if(node[:nginx_simplecgi][:cgi])
+if node[:nginx_simplecgi][:cgi]
   template '/etc/init/nginx_cgiwrap_dispatcher.conf' do
     source 'upstart-cgiwrap_dispatcher.erb'
     variables(
@@ -28,7 +28,7 @@ if(node[:nginx_simplecgi][:cgi])
     )
   end
 
-  service "nginx_cgiwrap_dispatcher" do
+  service 'nginx_cgiwrap_dispatcher' do
     provider Chef::Provider::Service::Upstart
     supports :status => true, :restart => true, :reload => true
     action [:enable, :start]
