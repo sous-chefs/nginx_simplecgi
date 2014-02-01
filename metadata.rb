@@ -14,4 +14,4 @@ end
   depends dep
 end
 
-suggests 'yum'
+suggests 'yum-epel'

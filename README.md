@@ -19,7 +19,7 @@ Requirements
  * perl
  * runit
  * bluepill
- * yum (recommended)
+ * yum-epel (suggested in metadata, but required for RHEL platforms)
 
 
 Usage
