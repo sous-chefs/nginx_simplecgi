@@ -13,7 +13,7 @@ pre-start script
   chown <%= @nginx_user %>:<%= @nginx_group %> <%= @dispatch_dir %>
 end script
 
-exec /usr/bin/spawn-fcgi -s <%= File.join(@dispatch_dir, 'phpwrap_dispatcher.sock') %> \
+exec /usr/bin/spawn-fcgi -s <%= File.join(@dispatch_dir, 'phpwrap_dispatch.sock') %> \
   -P <%= File.join(@dispatch_dir, 'phpwrap_dispatcher.pid') %> \
   -C <%= @dispatch_procs.to_i %> -u <%= @nginx_user %> \
   -g <%= @nginx_group %> -f <%= @php_cgi_bin %> -n
