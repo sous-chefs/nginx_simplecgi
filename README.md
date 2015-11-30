@@ -1,5 +1,6 @@
-NginxSimpleCGI
-==============
+# nginx_simplecgi cookbook
+[![Cookbook Version](https://img.shields.io/cookbook/v/nginx_simplecgi.svg)](https://supermarket.chef.io/cookbooks/nginx_simplecgi)
+
 
 This cookbook provides CGI support for NGINX via SimpleCGI.
 
@@ -19,7 +20,7 @@ Requirements
  * perl
  * runit
  * bluepill
- * yum-epel (suggested in metadata, but required for RHEL platforms)
+ * yum-epel
 
 
 Usage
