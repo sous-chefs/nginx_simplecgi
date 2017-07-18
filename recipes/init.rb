@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-if node[:nginx_simplecgi][:php]
+if node['nginx_simplecgi']['php']
   template '/etc/init.d/phpwrap_dispatcher' do
     source 'wrap.init.erb'
     owner 'root'
@@ -24,7 +24,7 @@ if node[:nginx_simplecgi][:php]
       kind: 'php',
       exec: '/usr/local/bin/phpwrap_dispatcher',
       pid_file: File.join(
-        node[:nginx_simplecgi][:dispatcher_directory],
+        node['nginx_simplecgi']['dispatcher_directory'],
         'phpwrap_dispatcher.pid'
       )
     )
@@ -36,7 +36,7 @@ if node[:nginx_simplecgi][:php]
   end
 end
 
-if node[:nginx_simplecgi][:cgi]
+if node['nginx_simplecgi']['cgi']
   template '/etc/init.d/cgiwrap_dispatcher' do
     source 'wrap.init.erb'
     owner 'root'
@@ -46,7 +46,7 @@ if node[:nginx_simplecgi][:cgi]
       kind: 'cgi',
       exec: '/usr/local/bin/cgiwrap_dispatcher',
       pid_file: File.join(
-        node[:nginx_simplecgi][:dispatcher_directory],
+        node['nginx_simplecgi']['dispatcher_directory'],
         'cgiwrap_dispatcher.pid'
       )
     )

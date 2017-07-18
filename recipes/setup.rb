@@ -25,8 +25,8 @@ pkgs = if platform_family?('rhel', 'fedora', 'amazon')
 
 if platform_family?('rhel')
   include_recipe 'yum-epel'
-  if node[:nginx_simplecgi][:init_type].to_sym == :upstart
-    node.override[:nginx_simplecgi][:init_type] = 'init'
+  if node['nginx_simplecgi']['init_type'].to_sym == :upstart
+    node.override['nginx_simplecgi']['init_type'] = 'init'
   end
 end
 
@@ -37,19 +37,19 @@ if pkgs.include?('fcgi-perl')
   cpan_module 'FCGI::ProcManager'
 end
 
-directory node[:nginx_simplecgi][:dispatcher_directory] do
+directory node['nginx_simplecgi']['dispatcher_directory'] do
   action :create
   recursive true
-  owner node[:nginx][:user]
-  group node[:nginx][:group] || node[:nginx][:user]
+  owner node['nginx']['user']
+  group node['nginx']['group'] || node['nginx']['user']
 end
 
 # Setup our dispatchers
-include_recipe 'nginx_simplecgi::cgi' if node[:nginx_simplecgi][:cgi]
-include_recipe 'nginx_simplecgi::php' if node[:nginx_simplecgi][:php]
+include_recipe 'nginx_simplecgi::cgi' if node['nginx_simplecgi']['cgi']
+include_recipe 'nginx_simplecgi::php' if node['nginx_simplecgi']['php']
 
 # Setup our init
-case node[:nginx_simplecgi][:init_type].to_sym
+case node['nginx_simplecgi']['init_type'].to_sym
 when :upstart
   include_recipe 'nginx_simplecgi::upstart'
 when :runit
@@ -57,5 +57,5 @@ when :runit
 when :init
   include_recipe 'nginx_simplecgi::init'
 else
-  raise "Not Implemented: #{node[:nginx_simplecgi][:init_type]}"
+  raise "Not Implemented: #{node['nginx_simplecgi']['init_type']}"
 end

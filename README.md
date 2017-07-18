@@ -22,12 +22,12 @@ This cookbook provides CGI support for NGINX via SimpleCGI.
 
 ## Attributes
 
-- `node[:nginx_simplecgi][:cgi] -> Enable CGI dispatch`
-- `node[:nginx_simplecgi][:php] -> Enable PHP dispatch`
-- `node[:nginx_simplecgi][:php_cgi_bin] -> PHP executable path for CGI`
-- `node[:nginx_simplecgi][:init_type] -> Init style for dispatchers`
-- `node[:nginx_simplecgi][:dispatcher_directory] -> Directory to contain socket and pid files`
-- `node[:nginx_simplecgi][:dispatcher_processes] -> Number of dispatcher processes for handling requests`
+- `node['nginx_simplecgi']['cgi'] -> Enable CGI dispatch`
+- `node['nginx_simplecgi']['php'] -> Enable PHP dispatch`
+- `node['nginx_simplecgi']['php_cgi_bin'] -> PHP executable path for CGI`
+- `node['nginx_simplecgi']['init_type'] -> Init style for dispatchers`
+- `node['nginx_simplecgi']['dispatcher_directory'] -> Directory to contain socket and pid files`
+- `node['nginx_simplecgi']['dispatcher_processes'] -> Number of dispatcher processes for handling requests`
 
 ## Template Helper
 

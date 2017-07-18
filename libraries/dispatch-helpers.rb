@@ -4,7 +4,7 @@ module NginxSimpleCGI
   #   * :pattern => CGI pattern (defaults: ^/cgi-bin/.*\.cgi$)
   #   * :cgi_bin_dir => CGI bin directory prefix (defaults: '/usr/lib')
   #   * :dispatcher => Dispatcher socket directory  (defaults: directory
-  #     provided via node[:nginx_simplecgi][:dispatcher_directory]
+  #     provided via node['nginx_simplecgi']['dispatcher_directory']
   #   * :custom => String appended into location block
   # block:: Eval'ed and result string casted and appended into location block
   #
@@ -13,7 +13,7 @@ module NginxSimpleCGI
       pattern: type == :php ? '.php$' : '^/cgi-bin/.*\.cgi$',
       cgi_bin_dir: '/usr/lib',
       docroot: '/var/www',
-      dispatcher: "unix:#{File.join(node[:nginx_simplecgi][:dispatcher_directory], "#{type}wrap-dispatch.sock")}",
+      dispatcher: "unix:#{File.join(node['nginx_simplecgi']['dispatcher_directory'], "#{type}wrap-dispatch.sock")}",
     }.merge(args)
     %(
   location ~ #{args[:pattern]} {
