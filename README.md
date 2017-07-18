@@ -16,11 +16,10 @@ Requirements
 
 ### Cookbooks
 
- * nginx
- * perl
- * runit
- * bluepill
- * yum-epel
+- nginx
+- perl
+- runit
+- yum-epel
 
 
 Usage

@@ -25,5 +25,5 @@ default[:nginx_simplecgi][:dispatcher_directory] = '/var/run/nginx'
 default[:nginx_simplecgi][:dispatcher_processes] = 4
 # Location of PHP CGI executable
 default[:nginx_simplecgi][:php_cgi_bin] = '/usr/bin/php-cgi'
-# Type of init (:upstart, :runit, :bluepill, :monit)
+# Type of init (:upstart, :runit)
 default[:nginx_simplecgi][:init_type] = :upstart

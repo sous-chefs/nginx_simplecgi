@@ -62,8 +62,6 @@ when :upstart
   include_recipe 'nginx_simplecgi::upstart'
 when :runit
   include_recipe 'nginx_simplecgi::runit'
-when :bluepill
-  include_recipe 'nginx_simplecgi::bluepill'
 when :init
   include_recipe 'nginx_simplecgi::init'
 else
