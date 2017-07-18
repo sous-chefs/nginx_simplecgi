@@ -1,18 +1,15 @@
 # nginx_simplecgi cookbook
-[![Cookbook Version](https://img.shields.io/cookbook/v/nginx_simplecgi.svg)](https://supermarket.chef.io/cookbooks/nginx_simplecgi)
 
+[![Cookbook Version](https://img.shields.io/cookbook/v/nginx_simplecgi.svg)](https://supermarket.chef.io/cookbooks/nginx_simplecgi)
 
 This cookbook provides CGI support for NGINX via SimpleCGI.
 
-
-Requirements
-------------
+## Requirements
 
 ### Platform:
 
- * Debian
- * Ubuntu 10.04+
- * RHEL based platforms (CentOS, Redhat, etc)
+- Debian/ Ubuntu
+- RHEL based platforms (CentOS, Redhat, etc)
 
 ### Cookbooks
 
@@ -21,25 +18,20 @@ Requirements
 - runit
 - yum-epel
 
+# Usage
 
-Usage
-=====
+## Attributes
 
-Attributes
-----------
+- `node[:nginx_simplecgi][:cgi] -> Enable CGI dispatch`
+- `node[:nginx_simplecgi][:php] -> Enable PHP dispatch`
+- `node[:nginx_simplecgi][:php_cgi_bin] -> PHP executable path for CGI`
+- `node[:nginx_simplecgi][:init_type] -> Init style for dispatchers`
+- `node[:nginx_simplecgi][:dispatcher_directory] -> Directory to contain socket and pid files`
+- `node[:nginx_simplecgi][:dispatcher_processes] -> Number of dispatcher processes for handling requests`
 
-* `node[:nginx_simplecgi][:cgi] -> Enable CGI dispatch`
-* `node[:nginx_simplecgi][:php] -> Enable PHP dispatch`
-* `node[:nginx_simplecgi][:php_cgi_bin] -> PHP executable path for CGI`
-* `node[:nginx_simplecgi][:init_type] -> Init style for dispatchers`
-* `node[:nginx_simplecgi][:dispatcher_directory] -> Directory to contain socket and pid files`
-* `node[:nginx_simplecgi][:dispatcher_processes] -> Number of dispatcher processes for handling requests`
+## Template Helper
 
-Template Helper
----------------
-
-A template method helper, `dispatch` is provided to add the require location 
-block into your nginx configuration files:
+A template method helper, `dispatch` is provided to add the require location block into your nginx configuration files:
 
 ```ruby
 <%= nginx_dispatch(:cgi) %>
@@ -49,7 +41,7 @@ The default call will output:
 
 ```
   location ~ ^/cgi-bin/.*\.cgi$ {
-    gzip off; 
+    gzip off;
     fastcgi_pass  unix:/var/run/nginx/cgiwrap-dispatch.sock;
     fastcgi_index index.cgi;
     fastcgi_param SCRIPT_FILENAME /usr/lib$fastcgi_script_name;
@@ -74,23 +66,19 @@ The default call will output:
 
 Available options:
 
-* `:pattern -> change the pattern nginx matches`
-* `:cgi_bin_dir -> change the prefix directory of the local cgi-bin`
-* `:dispatcher -> use a custom dispatcher (socket or tcp based)`
-* `:custom -> string to be appended within the location block`
+- `:pattern -> change the pattern nginx matches`
+- `:cgi_bin_dir -> change the prefix directory of the local cgi-bin`
+- `:dispatcher -> use a custom dispatcher (socket or tcp based)`
+- `:custom -> string to be appended within the location block`
 
-The method will also accept a block that will be eval'd and the result appended
-within the location block.
+The method will also accept a block that will be eval'd and the result appended within the location block.
 
+## License and Author
 
-License and Author
-------------------
-
-Author:: Chris Roberts (<chrisroberts.code@gmail.com>)
+Author:: Chris Roberts ([chrisroberts.code@gmail.com](mailto:chrisroberts.code@gmail.com))
 
 Copyright:: Chris Roberts
 
-Repository:: https://github.com/heavywater/chef-nginx_simplecgi
+Repository:: <https://github.com/heavywater/chef-nginx_simplecgi>
 
 License:: Apache 2.0
-
