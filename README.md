@@ -1,5 +1,6 @@
 # nginx_simplecgi cookbook
 
+[![Build Status](https://travis-ci.org/tas50/nginx_simplecgi.svg?branch=master)](https://travis-ci.org/tas50/nginx_simplecgi)
 [![Cookbook Version](https://img.shields.io/cookbook/v/nginx_simplecgi.svg)](https://supermarket.chef.io/cookbooks/nginx_simplecgi)
 
 This cookbook provides CGI support for NGINX via SimpleCGI.
