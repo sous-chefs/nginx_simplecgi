@@ -10,7 +10,7 @@ version          '0.1.3'
   supports os
 end
 
-%w( nginx perl runit yum-epel ).each do |dep|
+%w( chef_nginx perl runit yum-epel ).each do |dep|
   depends dep
 end
 

@@ -17,7 +17,7 @@ This cookbook provides CGI support for NGINX via SimpleCGI.
 
 ### Cookbooks
 
-- nginx
+- chef_nginx
 - perl
 - runit
 - yum-epel
