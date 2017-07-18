@@ -1,6 +1,6 @@
 name             'nginx_simplecgi'
-maintainer       'Chris Roberts'
-maintainer_email 'chrisroberts.code@gmail.com'
+maintainer       'Tim Smith'
+maintainer_email 'tsmith@chef.io'
 license          'Apache 2.0'
 description      'Provides SimpleCGI for NGINX'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
@@ -13,3 +13,7 @@ end
 %w( nginx perl runit bluepill yum-epel ).each do |dep|
   depends dep
 end
+
+source_url 'https://github.com/tas50/nginx_simplecgi'
+issues_url 'https://github.com/tas50/nginx_simplecgi/issues'
+chef_version '>= 12.1' if respond_to?(:chef_version)
