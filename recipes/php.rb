@@ -15,8 +15,7 @@
 # limitations under the License.
 
 pkgs = value_for_platform(
-  %w(redhat centos fedora scientific) => {
-    %w(5.0 5.1 5.2 5.3 5.4 5.5 5.6 5.7 5.8) => %w(php53),
+  %w(redhat centos fedora scientific amazon) => {
     'default' => %w(php),
   },
   %w(debian ubuntu) => {
@@ -25,9 +24,7 @@ pkgs = value_for_platform(
   'default' => %w(php5-cgi)
 )
 
-pkgs.each do |package_name|
-  package package_name
-end
+package pkgs
 
 template '/usr/local/bin/phpwrap_dispatcher' do
   source 'phpwrap-dispatcher.erb'

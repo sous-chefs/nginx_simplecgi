@@ -17,17 +17,11 @@
 # Basic setups
 #
 
-# set the appropriate set of packages based on platform family and also handle RHEL 5.X
-case node['platform_family']
-when 'rhel', 'fedora'
-  pkgs = if node['platform_version'].to_i < 6
-           %w(fcgi-perl spawn-fcgi)
-         else
-           %w(perl-FCGI perl-FCGI-ProcManager spawn-fcgi)
-         end
-else
-  pkgs = %w(libfcgi-perl libfcgi-procmanager-perl spawn-fcgi)
-end
+pkgs = if platform_family?('rhel', 'fedora', 'amazon')
+         %w(perl-FCGI perl-FCGI-ProcManager spawn-fcgi)
+       else
+         %w(libfcgi-perl libfcgi-procmanager-perl spawn-fcgi)
+       end
 
 if platform_family?('rhel')
   include_recipe 'yum-epel'
@@ -36,9 +30,7 @@ if platform_family?('rhel')
   end
 end
 
-pkgs.each do |package_name|
-  package package_name
-end
+package pkgs
 
 if pkgs.include?('fcgi-perl')
   include_recipe 'perl'
