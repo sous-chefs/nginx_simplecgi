@@ -7,26 +7,24 @@ module NginxSimpleCGI
   #     provided via node[:nginx_simplecgi][:dispatcher_directory]
   #   * :custom => String appended into location block
   # block:: Eval'ed and result string casted and appended into location block
-  #     
-  def nginx_dispatch(type = :cgi, args={})
+  #
+  def nginx_dispatch(type = :cgi, args = {})
     args = {
-      :pattern => type == :php ? '.php$' : '^/cgi-bin/.*\.cgi$', 
-      :cgi_bin_dir => '/usr/lib',
-      :docroot => '/var/www',
-      :dispatcher => "unix:#{File.join(node[:nginx_simplecgi][:dispatcher_directory], "#{type}wrap-dispatch.sock")}"
+      pattern: type == :php ? '.php$' : '^/cgi-bin/.*\.cgi$',
+      cgi_bin_dir: '/usr/lib',
+      docroot: '/var/www',
+      dispatcher: "unix:#{File.join(node[:nginx_simplecgi][:dispatcher_directory], "#{type}wrap-dispatch.sock")}",
     }.merge(args)
-    %Q(
+    %(
   location ~ #{args[:pattern]} {
-    gzip off; 
+    gzip off;
     fastcgi_pass  #{args[:dispatcher]};
     fastcgi_index index.#{type};
-    #{
-      if(type == :cgi)
+    #{if type == :cgi
         "fastcgi_param SCRIPT_FILENAME #{args[:cgi_bin_dir]}$fastcgi_script_name;"
       else
         "fastcgi_param SCRIPT_FILENAME #{args[:docroot]}$fastcgi_script_name;"
-      end
-    }
+      end}
     fastcgi_param QUERY_STRING     $query_string;
     fastcgi_param REQUEST_METHOD   $request_method;
     fastcgi_param CONTENT_TYPE     $content_type;
@@ -43,7 +41,7 @@ module NginxSimpleCGI
     fastcgi_param SERVER_ADDR        $server_addr;
     fastcgi_param SERVER_PORT        $server_port;
     fastcgi_param SERVER_NAME        $server_name;
-    #{"fastcgi_param REDIRECT_STATUS        200;" if type == :php}
+    #{'fastcgi_param REDIRECT_STATUS        200;' if type == :php}
     #{args[:custom] if args[:custom]}
     #{yield.to_s if block_given?}
   }

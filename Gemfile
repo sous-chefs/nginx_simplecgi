@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rake'
 gem 'librarian-chef'
-gem 'emeril', :group => :release
+gem 'emeril', group: :release
 
 group :lint do
   gem 'foodcritic', '~> 5.0'

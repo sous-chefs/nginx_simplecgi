@@ -2,7 +2,7 @@
 # vi: set ft=ruby :
 site 'http://community.opscode.com/api/v1'
 
-cookbook 'nginx_simplecgi', path:'.'
+cookbook 'nginx_simplecgi', path: '.'
 
 cookbook 'ubuntu'
 cookbook 'yum'

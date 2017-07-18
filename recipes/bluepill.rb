@@ -18,7 +18,7 @@ include_recipe 'bluepill'
 
 wrap_types = [
   node[:nginx_simplecgi][:php] ? :php : nil,
-  node[:nginx_simplecgi][:cgi] ? :cgi : nil
+  node[:nginx_simplecgi][:cgi] ? :cgi : nil,
 ].compact
 
 wrap_types.each do |kind|
@@ -26,13 +26,13 @@ wrap_types.each do |kind|
     source 'wrap.pill.erb'
     mode 0644
     variables(
-      :pid_file => File.join(
+      pid_file: File.join(
         node[:nginx_simplecgi][:dispatcher_directory],
         "#{kind}wrap_dispatcher.pid"
       ),
-      :pill_name => "#{kind}wrap_dispatcher",
-      :working_dir => node[:nginx_simplecgi][:dispatcher_directory],
-      :exec => "/usr/local/bin/#{kind}wrap_dispatcher"
+      pill_name: "#{kind}wrap_dispatcher",
+      working_dir: node[:nginx_simplecgi][:dispatcher_directory],
+      exec: "/usr/local/bin/#{kind}wrap_dispatcher"
     )
   end
 

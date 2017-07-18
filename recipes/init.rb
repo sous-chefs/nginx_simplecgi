@@ -21,9 +21,9 @@ if node[:nginx_simplecgi][:php]
     group 'root'
     mode '0755'
     variables(
-      :kind => 'php',
-      :exec => '/usr/local/bin/phpwrap_dispatcher',
-      :pid_file => File.join(
+      kind: 'php',
+      exec: '/usr/local/bin/phpwrap_dispatcher',
+      pid_file: File.join(
         node[:nginx_simplecgi][:dispatcher_directory],
         'phpwrap_dispatcher.pid'
       )
@@ -31,7 +31,7 @@ if node[:nginx_simplecgi][:php]
   end
 
   service 'phpwrap_dispatcher' do
-    supports :status => true, :restart => true, :reload => false
+    supports status: true, restart: true, reload: false
     action [:enable, :start]
   end
 end
@@ -43,9 +43,9 @@ if node[:nginx_simplecgi][:cgi]
     group 'root'
     mode '0755'
     variables(
-      :kind => 'cgi',
-      :exec => '/usr/local/bin/cgiwrap_dispatcher',
-      :pid_file => File.join(
+      kind: 'cgi',
+      exec: '/usr/local/bin/cgiwrap_dispatcher',
+      pid_file: File.join(
         node[:nginx_simplecgi][:dispatcher_directory],
         'cgiwrap_dispatcher.pid'
       )
@@ -53,7 +53,7 @@ if node[:nginx_simplecgi][:cgi]
   end
 
   service 'cgiwrap_dispatcher' do
-    supports :status => true, :restart => true, :reload => false
+    supports status: true, restart: true, reload: false
     action [:enable, :start]
   end
 end

@@ -20,11 +20,11 @@
 # set the appropriate set of packages based on platform family and also handle RHEL 5.X
 case node['platform_family']
 when 'rhel', 'fedora'
-  if node['platform_version'].to_i < 6
-    pkgs = %w(fcgi-perl spawn-fcgi)
-  else
-    pkgs = %w(perl-FCGI perl-FCGI-ProcManager spawn-fcgi)
-  end
+  pkgs = if node['platform_version'].to_i < 6
+           %w(fcgi-perl spawn-fcgi)
+         else
+           %w(perl-FCGI perl-FCGI-ProcManager spawn-fcgi)
+         end
 else
   pkgs = %w(libfcgi-perl libfcgi-procmanager-perl spawn-fcgi)
 end
@@ -67,5 +67,5 @@ when :bluepill
 when :init
   include_recipe 'nginx_simplecgi::init'
 else
-  fail "Not Implemented: #{node[:nginx_simplecgi][:init_type]}"
+  raise "Not Implemented: #{node[:nginx_simplecgi][:init_type]}"
 end
