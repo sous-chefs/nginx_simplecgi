@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: nginx_simplecgi
+# Cookbook:: nginx_simplecgi
 # Recipe:: setup
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -26,7 +26,7 @@ pkgs = if platform_family?('rhel', 'fedora', 'amazon')
 if platform_family?('rhel')
   include_recipe 'yum-epel'
   if node[:nginx_simplecgi][:init_type].to_sym == :upstart
-    node.set[:nginx_simplecgi][:init_type] = 'init'
+    node.override[:nginx_simplecgi][:init_type] = 'init'
   end
 end
 
