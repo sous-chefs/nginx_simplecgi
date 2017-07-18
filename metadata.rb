@@ -10,8 +10,6 @@ version          '0.1.2'
   supports os
 end
 
-%w{ nginx perl runit bluepill }.each do |dep|
+%w{ nginx perl runit bluepill yum-epel }.each do |dep|
   depends dep
 end
-
-suggests 'yum-epel'
