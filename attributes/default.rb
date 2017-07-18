@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: nginx_simplecgi
+# Cookbook:: nginx_simplecgi
 # Attributes:: default
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
