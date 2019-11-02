@@ -1,12 +1,66 @@
+---
+jobs:
+  final:
+    docker:
+      - image: bash:latest
+    steps:
+      - run:
+          name: Finish cooking
+          command: echo "Finished cooking"
+lint_and_unit: &lint_and_unit
+  - delivery
+  - danger
+  - lint-yaml
+  - lint-markdown
 version: 2.1
-
 orbs:
-  kitchen: sous-chefs/kitchen@1.0.0
-
+  kitchen: sous-chefs/kitchen@2
 workflows:
   kitchen:
     jobs:
+      - kitchen/yamllint:
+          name: lint-yaml
+      - kitchen/mdlint:
+          name: lint-markdown
       - kitchen/danger:
           name: danger
-      - kitchen/lint:
-          name: lint
+          context: Danger
+      - kitchen/delivery:
+          name: delivery
+      - kitchen/dokken-single:
+          name: default-centos-69
+          suite: default-centos-69
+          requires: *lint_and_unit
+      - kitchen/dokken-single:
+          name: default-centos-73
+          suite: default-centos-73
+          requires: *lint_and_unit
+      - kitchen/dokken-single:
+          name: default-debian-711
+          suite: default-debian-711
+          requires: *lint_and_unit
+      - kitchen/dokken-single:
+          name: default-debian-88
+          suite: default-debian-88
+          requires: *lint_and_unit
+      - kitchen/dokken-single:
+          name: default-debian-90
+          suite: default-debian-90
+          requires: *lint_and_unit
+      - kitchen/dokken-single:
+          name: default-ubuntu-1404
+          suite: default-ubuntu-1404
+          requires: *lint_and_unit
+      - kitchen/dokken-single:
+          name: default-ubuntu-1604
+          suite: default-ubuntu-1604
+          requires: *lint_and_unit
+      - final:
+          requires:
+            - default-centos-69
+            - default-centos-73
+            - default-debian-711
+            - default-debian-88
+            - default-debian-90
+            - default-ubuntu-1404
+            - default-ubuntu-1604
