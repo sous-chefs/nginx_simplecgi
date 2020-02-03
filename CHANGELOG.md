@@ -2,7 +2,7 @@
 
 This file is used to list changes made in each version of the nginx_simplecgi cookbook.
 
-## UNRELEASED
+## 0.3.0 (2020-02-01)
 
 - Change chef_nginx dependency to nginx
 - Require Chef Infra 12.19 or later
