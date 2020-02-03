@@ -2,6 +2,16 @@
 
 This file is used to list changes made in each version of the nginx_simplecgi cookbook.
 
+## UNRELEASED
+
+- Change chef_nginx dependency to nginx
+- Require Chef Infra 12.19 or later
+- Change the maintainer to Sous Chefs
+- Update .gitignore and chefignore
+- Add contributing and testing docs
+- Remove the Gemfile
+- Rename .kitchen.yml to kitchen.yml so it's not hidden
+
 ## 0.2.0 (2017-07-18)
 
 - Support for Bluepill has been removed. If you require Bluepill use the 0.1.X release

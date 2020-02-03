@@ -1,19 +1,18 @@
 name             'nginx_simplecgi'
-maintainer       'Tim Smith'
-maintainer_email 'tsmith@chef.io'
+maintainer       'Sous Chefs'
+maintainer_email 'help@sous-chefs.org'
 license          'Apache-2.0'
 description      'Provides SimpleCGI for NGINX'
-long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version          '0.2.0'
 
 %w( debian ubuntu redhat centos fedora scientific amazon oracle ).each do |os|
   supports os
 end
 
-%w( chef_nginx perl runit yum-epel ).each do |dep|
+%w( nginx perl runit yum-epel ).each do |dep|
   depends dep
 end
 
-source_url 'https://github.com/tas50/nginx_simplecgi'
-issues_url 'https://github.com/tas50/nginx_simplecgi/issues'
-chef_version '>= 12.1' if respond_to?(:chef_version)
+source_url 'https://github.com/sous-chefs/nginx_simplecgi'
+issues_url 'https://github.com/sous-chefs/nginx_simplecgi/issues'
+chef_version '>= 12.19'
