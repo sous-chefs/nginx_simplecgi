@@ -21,11 +21,11 @@ This cookbook is maintained by the Sous Chefs. The Sous Chefs are a community of
 
 ### Chef
 
-- Chef 12.1+
+- Chef 12.19+
 
 ### Cookbooks
 
-- chef_nginx
+- nginx
 - perl
 - runit
 - yum-epel
