@@ -2,6 +2,10 @@
 
 This file is used to list changes made in each version of the nginx_simplecgi cookbook.
 
+## Unreleased
+
+- resolved cookstyle error: libraries/dispatch-helpers.rb:52:19 warning: `Lint/SendWithMixinArgument`
+
 ## 0.3.0 (2020-02-01)
 
 - Change chef_nginx dependency to nginx
