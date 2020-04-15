@@ -49,4 +49,4 @@ module NginxSimpleCGI
   end
 end
 
-::Erubis::Context.send(:include, NginxSimpleCGI)
+::Erubis::Context.include NginxSimpleCGI
