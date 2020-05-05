@@ -2,7 +2,7 @@
 
 This file is used to list changes made in each version of the nginx_simplecgi cookbook.
 
-## Unreleased
+## 0.3.1 (2020-05-05)
 
 - resolved cookstyle error: libraries/dispatch-helpers.rb:52:19 warning: `Lint/SendWithMixinArgument`
 
