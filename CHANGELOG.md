@@ -2,6 +2,10 @@
 
 This file is used to list changes made in each version of the nginx_simplecgi cookbook.
 
+## Unreleased
+
+- resolved cookstyle error: libraries/dispatch-helpers.rb:45:7 convention: `Style/RedundantCondition`
+
 ## 0.3.1 (2020-05-05)
 
 - resolved cookstyle error: libraries/dispatch-helpers.rb:52:19 warning: `Lint/SendWithMixinArgument`

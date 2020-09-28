@@ -42,7 +42,7 @@ module NginxSimpleCGI
     fastcgi_param SERVER_PORT        $server_port;
     fastcgi_param SERVER_NAME        $server_name;
     #{'fastcgi_param REDIRECT_STATUS        200;' if type == :php}
-    #{args[:custom] if args[:custom]}
+    #{args[:custom]}
     #{yield.to_s if block_given?}
   }
     )
