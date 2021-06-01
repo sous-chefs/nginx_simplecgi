@@ -2,7 +2,7 @@
 
 This file is used to list changes made in each version of the nginx_simplecgi cookbook.
 
-## Unreleased
+## 0.3.2 - *2021-06-01*
 
 - resolved cookstyle error: libraries/dispatch-helpers.rb:45:7 convention: `Style/RedundantCondition`
 
