@@ -3,7 +3,7 @@ maintainer       'Sous Chefs'
 maintainer_email 'help@sous-chefs.org'
 license          'Apache-2.0'
 description      'Provides SimpleCGI for NGINX'
-version          '0.3.1'
+version          '0.3.2'
 
 %w( debian ubuntu redhat centos fedora scientific amazon oracle ).each do |os|
   supports os
