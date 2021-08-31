@@ -2,7 +2,7 @@
 
 This file is used to list changes made in each version of the nginx_simplecgi cookbook.
 
-## Unreleased
+## 0.3.3 - *2021-08-31*
 
 - Standardise files with files in sous-chefs/repo-management
 
