@@ -4,15 +4,20 @@ maintainer_email 'help@sous-chefs.org'
 license          'Apache-2.0'
 description      'Provides SimpleCGI for NGINX'
 version          '0.3.4'
+source_url       'https://github.com/sous-chefs/nginx_simplecgi'
+issues_url       'https://github.com/sous-chefs/nginx_simplecgi/issues'
+chef_version     '>= 15.3'
 
-%w( debian ubuntu redhat centos fedora scientific amazon oracle ).each do |os|
-  supports os
-end
+supports 'debian'
+supports 'ubuntu'
+supports 'redhat'
+supports 'centos'
+supports 'fedora'
+supports 'scientific'
+supports 'amazon'
+supports 'oracle'
 
-%w( nginx perl runit yum-epel ).each do |dep|
-  depends dep
-end
-
-source_url 'https://github.com/sous-chefs/nginx_simplecgi'
-issues_url 'https://github.com/sous-chefs/nginx_simplecgi/issues'
-chef_version '>= 12.19'
+depends 'nginx'
+depends 'perl'
+depends 'runit'
+depends 'yum-epel'
