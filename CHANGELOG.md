@@ -2,6 +2,13 @@
 
 This file is used to list changes made in each version of the nginx_simplecgi cookbook.
 
+## [0.3.14](https://github.com/sous-chefs/nginx_simplecgi/compare/v0.3.13...v0.3.14) (2025-10-15)
+
+
+### Bug Fixes
+
+* **ci:** Update workflows to use release pipeline ([#67](https://github.com/sous-chefs/nginx_simplecgi/issues/67)) ([88584b9](https://github.com/sous-chefs/nginx_simplecgi/commit/88584b9cc3264aa422aaf70f8e71ace7547d1e84))
+
 ## 0.3.4 - *2022-02-08*
 
 * Remove delivery folder
