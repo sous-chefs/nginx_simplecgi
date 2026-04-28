@@ -45,10 +45,14 @@ module NginxSimplecgi
 
     def dispatcher_packages
       if platform_family?('rhel', 'fedora', 'amazon')
-        %w(perl-FCGI perl-FCGI-ProcManager spawn-fcgi)
+        %w(perl-FCGI perl-FCGI-ProcManager)
       else
-        %w(libfcgi-perl libfcgi-procmanager-perl spawn-fcgi)
+        %w(libfcgi-perl libfcgi-procmanager-perl)
       end
+    end
+
+    def spawn_fcgi_available?
+      !platform_family?('rhel') || node['platform_version'].to_i < 9
     end
 
     def php_packages

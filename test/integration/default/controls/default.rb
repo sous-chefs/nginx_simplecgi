@@ -9,18 +9,20 @@ control 'nginx-simplecgi-dispatchers' do
     it { should be_executable }
   end
 
-  describe file('/usr/local/bin/phpwrap_dispatcher') do
-    it { should exist }
-    it { should be_executable }
-  end
-
   describe systemd_service('cgiwrap_dispatcher') do
     it { should be_installed }
     it { should be_enabled }
   end
 
-  describe systemd_service('phpwrap_dispatcher') do
-    it { should be_installed }
-    it { should be_enabled }
+  unless os.redhat? && os.release.to_i >= 9
+    describe file('/usr/local/bin/phpwrap_dispatcher') do
+      it { should exist }
+      it { should be_executable }
+    end
+
+    describe systemd_service('phpwrap_dispatcher') do
+      it { should be_installed }
+      it { should be_enabled }
+    end
   end
 end

@@ -67,6 +67,21 @@ describe 'nginx_simplecgi_php_dispatcher' do
     it { is_expected.to install_package(%w(php)) }
   end
 
+  context 'on rhel 9 family' do
+    platform 'almalinux', '9'
+
+    recipe do
+      nginx_simplecgi_php_dispatcher 'default' do
+        nginx_user 'nginx'
+        nginx_group 'nginx'
+      end
+    end
+
+    it { is_expected.not_to install_package(%w(perl-FCGI perl-FCGI-ProcManager spawn-fcgi)) }
+    it { is_expected.not_to install_package(%w(php)) }
+    it { is_expected.not_to create_systemd_unit('phpwrap_dispatcher.service') }
+  end
+
   context 'action :delete' do
     recipe do
       nginx_simplecgi_php_dispatcher 'default' do

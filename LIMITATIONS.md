@@ -27,10 +27,9 @@ RHEL-family platforms use:
 
 * `perl-FCGI`
 * `perl-FCGI-ProcManager`
-* `spawn-fcgi`
 * `php`
 
-RHEL-family package availability depends on EPEL for the FastCGI packages, so the dispatcher resources include `yum-epel::default` on RHEL-family platforms.
+RHEL-family package availability depends on EPEL for the FastCGI packages, so the dispatcher resources include `yum-epel::default` on RHEL-family platforms when EPEL packages are required. EPEL 9 does not currently provide `spawn-fcgi`, so the PHP dispatcher is skipped on RHEL-family 9 and newer platforms.
 
 ## Source Installs
 

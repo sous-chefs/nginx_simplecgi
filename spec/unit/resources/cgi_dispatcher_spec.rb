@@ -14,7 +14,7 @@ describe 'nginx_simplecgi_cgi_dispatcher' do
       end
     end
 
-    it { is_expected.to install_package(%w(libfcgi-perl libfcgi-procmanager-perl spawn-fcgi)) }
+    it { is_expected.to install_package(%w(libfcgi-perl libfcgi-procmanager-perl)) }
 
     it do
       is_expected.to create_directory('/var/run/nginx').with(
