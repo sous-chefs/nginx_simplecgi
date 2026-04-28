@@ -16,6 +16,8 @@ describe 'nginx_simplecgi_php_dispatcher' do
 
     it { is_expected.to install_package(%w(libfcgi-perl libfcgi-procmanager-perl spawn-fcgi)) }
     it { is_expected.to install_package(%w(php-cgi)) }
+    it { is_expected.not_to create_group('www-data') }
+    it { is_expected.not_to create_user('www-data') }
 
     it do
       is_expected.to create_template('/usr/local/bin/phpwrap_dispatcher').with(

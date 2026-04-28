@@ -21,6 +21,18 @@ action :create do
     package dispatcher_packages + %w(spawn-fcgi)
     package php_packages
 
+    group new_resource.nginx_group do
+      system true
+      only_if { platform_family?('rhel', 'fedora', 'amazon') }
+    end
+
+    user new_resource.nginx_user do
+      gid new_resource.nginx_group
+      system true
+      manage_home false
+      only_if { platform_family?('rhel', 'fedora', 'amazon') }
+    end
+
     directory new_resource.dispatcher_directory do
       owner new_resource.nginx_user
       group new_resource.nginx_group

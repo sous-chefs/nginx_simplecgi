@@ -44,7 +44,11 @@ module NginxSimplecgi
     end
 
     def dispatcher_packages
-      if platform_family?('rhel', 'fedora', 'amazon')
+      if platform_family?('rhel')
+        packages = %w(perl-FCGI perl-FCGI-ProcManager)
+        packages += %w(perl-sigtrap perl-ph) if node['platform_version'].to_i >= 9
+        packages
+      elsif platform_family?('fedora', 'amazon')
         %w(perl-FCGI perl-FCGI-ProcManager)
       else
         %w(libfcgi-perl libfcgi-procmanager-perl)

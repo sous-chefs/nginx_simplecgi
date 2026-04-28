@@ -23,13 +23,29 @@ describe NginxSimplecgi::Helpers do
 
   describe '#dispatcher_packages' do
     it 'uses Debian package names without spawn-fcgi' do
-      allow(helper).to receive(:platform_family?).with('rhel', 'fedora', 'amazon').and_return(false)
+      allow(helper).to receive(:platform_family?).with('rhel').and_return(false)
+      allow(helper).to receive(:platform_family?).with('fedora', 'amazon').and_return(false)
 
       expect(helper.dispatcher_packages).to eq(%w(libfcgi-perl libfcgi-procmanager-perl))
     end
 
-    it 'uses RHEL package names without spawn-fcgi' do
-      allow(helper).to receive(:platform_family?).with('rhel', 'fedora', 'amazon').and_return(true)
+    it 'uses RHEL package names without spawn-fcgi on RHEL 8' do
+      allow(helper).to receive(:platform_family?).with('rhel').and_return(true)
+      allow(helper).to receive(:node).and_return({ 'platform_version' => '8.10' })
+
+      expect(helper.dispatcher_packages).to eq(%w(perl-FCGI perl-FCGI-ProcManager))
+    end
+
+    it 'adds split Perl module packages on RHEL 9 and newer' do
+      allow(helper).to receive(:platform_family?).with('rhel').and_return(true)
+      allow(helper).to receive(:node).and_return({ 'platform_version' => '9.1' })
+
+      expect(helper.dispatcher_packages).to eq(%w(perl-FCGI perl-FCGI-ProcManager perl-sigtrap perl-ph))
+    end
+
+    it 'uses Fedora package names without spawn-fcgi' do
+      allow(helper).to receive(:platform_family?).with('rhel').and_return(false)
+      allow(helper).to receive(:platform_family?).with('fedora', 'amazon').and_return(true)
 
       expect(helper.dispatcher_packages).to eq(%w(perl-FCGI perl-FCGI-ProcManager))
     end
