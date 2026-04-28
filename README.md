@@ -21,25 +21,41 @@ This cookbook is maintained by the Sous Chefs. The Sous Chefs are a community of
 
 ### Chef
 
-- Chef 12.19+
+- Chef 16.0+
 
 ### Cookbooks
 
 - nginx
 - perl
-- runit
 - yum-epel
 
 ## Usage
 
-### Attributes
+### Resources
 
-- `node['nginx_simplecgi']['cgi'] -> Enable CGI dispatch`
-- `node['nginx_simplecgi']['php'] -> Enable PHP dispatch`
-- `node['nginx_simplecgi']['php_cgi_bin'] -> PHP executable path for CGI`
-- `node['nginx_simplecgi']['init_type'] -> Init style for dispatchers`
-- `node['nginx_simplecgi']['dispatcher_directory'] -> Directory to contain socket and pid files`
-- `node['nginx_simplecgi']['dispatcher_processes'] -> Number of dispatcher processes for handling requests`
+This cookbook is resource-only. The legacy recipes and attributes have been removed.
+
+* [nginx_simplecgi_cgi_dispatcher](documentation/cgi_dispatcher.md)
+* [nginx_simplecgi_php_dispatcher](documentation/php_dispatcher.md)
+* [Migration guide](migration.md)
+* [Limitations](LIMITATIONS.md)
+
+```ruby
+nginx_simplecgi_cgi_dispatcher 'default' do
+  dispatcher_directory '/var/run/nginx'
+  dispatcher_processes 4
+  nginx_user 'www-data'
+  nginx_group 'www-data'
+end
+
+nginx_simplecgi_php_dispatcher 'default' do
+  dispatcher_directory '/var/run/nginx'
+  dispatcher_processes 4
+  php_cgi_bin '/usr/bin/php-cgi'
+  nginx_user 'www-data'
+  nginx_group 'www-data'
+end
+```
 
 ### Template Helper
 
