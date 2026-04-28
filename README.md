@@ -16,18 +16,18 @@ This cookbook is maintained by the Sous Chefs. The Sous Chefs are a community of
 
 ### Platforms
 
-- Debian/ Ubuntu
-- RHEL based platforms (CentOS, Redhat, etc)
+* Debian/ Ubuntu
+* RHEL based platforms (CentOS, Redhat, etc)
 
 ### Chef
 
-- Chef 16.0+
+* Chef 16.0+
 
 ### Cookbooks
 
-- nginx
-- perl
-- yum-epel
+* nginx
+* perl
+* yum-epel
 
 ## Usage
 
@@ -94,10 +94,10 @@ The default call will output:
 
 Available options:
 
-- `:pattern -> change the pattern nginx matches`
-- `:cgi_bin_dir -> change the prefix directory of the local cgi-bin`
-- `:dispatcher -> use a custom dispatcher (socket or tcp based)`
-- `:custom -> string to be appended within the location block`
+* `:pattern -> change the pattern nginx matches`
+* `:cgi_bin_dir -> change the prefix directory of the local cgi-bin`
+* `:dispatcher -> use a custom dispatcher (socket or tcp based)`
+* `:custom -> string to be appended within the location block`
 
 The method will also accept a block that will be eval'd and the result appended within the location block.
 
