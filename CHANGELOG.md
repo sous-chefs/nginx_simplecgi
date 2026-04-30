@@ -2,6 +2,22 @@
 
 This file is used to list changes made in each version of the nginx_simplecgi cookbook.
 
+## [1.0.0](https://github.com/sous-chefs/nginx_simplecgi/compare/v0.3.14...v1.0.0) (2026-04-29)
+
+
+### ⚠ BREAKING CHANGES
+
+* migrate nginx_simplecgi resources ([#71](https://github.com/sous-chefs/nginx_simplecgi/issues/71))
+
+### Features
+
+* migrate nginx_simplecgi resources ([#71](https://github.com/sous-chefs/nginx_simplecgi/issues/71)) ([b50d1cf](https://github.com/sous-chefs/nginx_simplecgi/commit/b50d1cf4897064842cdb0d95bcbbced643e989a9))
+
+
+### Bug Fixes
+
+* **ci:** Update workflows to use release pipeline ([#67](https://github.com/sous-chefs/nginx_simplecgi/issues/67)) ([88584b9](https://github.com/sous-chefs/nginx_simplecgi/commit/88584b9cc3264aa422aaf70f8e71ace7547d1e84))
+
 ## [0.3.14](https://github.com/sous-chefs/nginx_simplecgi/compare/v0.3.13...v0.3.14) (2025-10-15)
 
 
