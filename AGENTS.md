@@ -1,6 +1,10 @@
-# nginx_simplecgi Limitations
+# nginx_simplecgi Agent Notes
 
 This cookbook manages SimpleCGI dispatcher scripts for NGINX and uses OS packages for FastCGI support.
+
+## Dependency Management
+
+Use `chef install Policyfile.rb` to resolve cookbook dependencies. The Policyfile uses GitHub sources for sous-chefs cookbook dependencies to avoid Supermarket availability issues during CI and local validation.
 
 ## Platform Support
 
