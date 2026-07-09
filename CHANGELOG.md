@@ -2,6 +2,13 @@
 
 This file is used to list changes made in each version of the nginx_simplecgi cookbook.
 
+## [1.0.1](https://github.com/sous-chefs/nginx_simplecgi/compare/v1.0.0...v1.0.1) (2026-07-09)
+
+
+### Bug Fixes
+
+* migrate to Policyfile ([#79](https://github.com/sous-chefs/nginx_simplecgi/issues/79)) ([a780b04](https://github.com/sous-chefs/nginx_simplecgi/commit/a780b0400bcf4ecd9d283828339b91832ab784f6))
+
 ## [1.0.0](https://github.com/sous-chefs/nginx_simplecgi/compare/v0.3.14...v1.0.0) (2026-04-29)
 
 
