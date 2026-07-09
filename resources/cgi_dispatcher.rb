@@ -14,7 +14,7 @@ action_class do
 end
 
 action :create do
-  include_recipe 'yum-epel::default' if platform_family?('rhel')
+  yum_epel 'default' if platform_family?('rhel')
 
   package dispatcher_packages
 

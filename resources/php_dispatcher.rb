@@ -16,7 +16,7 @@ end
 
 action :create do
   if spawn_fcgi_available?
-    include_recipe 'yum-epel::default' if platform_family?('rhel')
+    yum_epel 'default' if platform_family?('rhel')
 
     package dispatcher_packages + %w(spawn-fcgi)
     package php_packages

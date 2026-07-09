@@ -38,7 +38,7 @@ This cookbook is resource-only. The legacy recipes and attributes have been remo
 * [nginx_simplecgi_cgi_dispatcher](documentation/cgi_dispatcher.md)
 * [nginx_simplecgi_php_dispatcher](documentation/php_dispatcher.md)
 * [Migration guide](migration.md)
-* [Limitations](LIMITATIONS.md)
+* [Agent notes](AGENTS.md)
 
 ```ruby
 nginx_simplecgi_cgi_dispatcher 'default' do
